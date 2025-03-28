@@ -1,0 +1,20 @@
+@use '@xterm/xterm/css/xterm.css';
+
+@use '../../utils/styleUtils' as utils;
+
+@include utils.font-face('JetBrains Mono', '../../assets/fonts/JetBrainsMono');
+
+.terminal-container {
+  padding: 0;
+  margin: 16px 8px 16px 0;
+  flex: 1;
+  height: 656px;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid #828282;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

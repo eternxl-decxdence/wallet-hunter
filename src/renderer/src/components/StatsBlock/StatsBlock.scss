@@ -1,0 +1,60 @@
+@use '../../utils/styleUtils' as utils;
+
+@include utils.font-face('Oswald', '../../assets/Oswald');
+
+.stat {
+  &-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+
+    height: fit-content;
+
+    padding: 16px 8px 8px 8px;
+  }
+
+  &-title {
+    padding: 0 15px;
+    margin: 0;
+
+    margin-top: -24px;
+    background-color: var(--background-color);
+
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 16px;
+  }
+  &-item {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 4px;
+    border-bottom: 1px solid var(--stroke-color);
+  }
+  &-name {
+    padding: 0;
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 300;
+  }
+  &-quantity {
+    padding: 0;
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 300;
+  }
+}
