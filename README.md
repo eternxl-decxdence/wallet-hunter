@@ -1,6 +1,8 @@
-# wallet-hunter
+# Wallet Hunter
 
-An Electron application with React and TypeScript
+Electrton + TS + React 
+
+Powered by electron-vite
 
 ## Recommended IDE Setup
 
