@@ -3,6 +3,7 @@
 Electrton + TS + React 
 
 Powered by electron-vite
+
 Backend - [eth-crypto-checker](https://github.com/eternxl-decxdence/eth-balance-checker)
 ## Recommended IDE Setup
 
