@@ -1,0 +1,18 @@
+.spinner-animation {
+  position: absolute;
+  width: 100px;
+  margin: -50px 0;
+  height: 100px;
+  z-index: 1000;
+  fill: var(--stroke-color);
+  animation: 1s infinite reverse loadingAnimation linear;
+}
+@keyframes loadingAnimation {
+  from {
+    transform: rotate(1turn);
+  }
+
+  to {
+    tranform: rotate(2turn);
+  }
+}

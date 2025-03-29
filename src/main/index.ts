@@ -52,7 +52,7 @@ function createWindow(): void {
   ipcMain.on('start-csharp-process', (e, cols, rows, threads) => {
     console.log('Spawning terminal at', e)
     terminal = spawn(
-      `${__dirname}\\../../resources/executable/hunter-protocol.exe`,
+      `${__dirname}\\../../resources/hunter-protocol.exe`,
       [
         '--adminUrl=http://localhost:5000',
         '--resultsFile=results.json',
@@ -81,27 +81,43 @@ function createWindow(): void {
     terminal = null
   })
 
-  function connectToPipe(retries = 5) {
+  function connectToPipe(retries = 20) {
     pipeClient = createConnection(PIPE_NAME, () => {})
-    pipeClient.on('data', (data: string) => {
-      let JSON_DATA: object | null = null
-      try {
-        JSON_DATA = JSON.parse(data)
-      } catch (e) {
-        console.log(e)
-      }
-      mainWindow.webContents.send('stats-data', JSON_DATA)
+
+    pipeClient.on('readable', () => {
+      setImmediate(() => {
+        let chunk
+        while (null !== (chunk = pipeClient.read())) {
+          const data = chunk.toString().trim()
+          console.log(`[PIPE] Received chunk:`, data)
+
+          if (!data) {
+            console.log('[PIPE] Empty data received, skipping...')
+            continue // Пропускаем пустые данные
+          }
+
+          try {
+            const JSON_DATA = JSON.parse(data)
+            console.log(`[PIPE] Parsed JSON:`, JSON_DATA)
+            mainWindow.webContents.send('stats-data', JSON_DATA)
+          } catch (e) {
+            console.error(`[PIPE] JSON Parse Error:`, e)
+          }
+        }
+      })
     })
 
     pipeClient.on('error', (err: any) => {
       if (retries > 0) {
-        console.log(err)
+        console.log('Conection error, retrying... ', err)
         setTimeout(() => connectToPipe(retries - 1), 1000)
       } else {
       }
     })
 
-    pipeClient.on('end', () => {})
+    pipeClient.on('end', () => {
+      console.log('Pipe connection closed')
+    })
   }
 }
 

@@ -1,11 +1,14 @@
 # Wallet Hunter
 
-Electrton + TS + React 
+Electrton + TS + React
 
 Powered by electron-vite
 
 Backend - [eth-crypto-checker](https://github.com/eternxl-decxdence/eth-balance-checker)
+
 ## Recommended IDE Setup
+
+TODO: Redesign by [this](https://dribbble.com/shots/16282459-Cybersecurity-Dashboard) reference
 
 - [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 

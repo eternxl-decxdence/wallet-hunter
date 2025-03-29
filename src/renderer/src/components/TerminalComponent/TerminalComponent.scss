@@ -5,6 +5,10 @@
 @include utils.font-face('JetBrains Mono', '../../assets/fonts/JetBrainsMono');
 
 .terminal-container {
+  display: flex;
+  width: 1022px;
+  justify-content: space-around;
+  align-items: center;
   padding: 0;
   margin: 16px 8px 16px 0;
   flex: 1;

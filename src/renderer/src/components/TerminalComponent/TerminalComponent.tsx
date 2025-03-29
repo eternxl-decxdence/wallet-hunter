@@ -1,7 +1,8 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Terminal } from '@xterm/xterm'
 import './TerminalComponent.scss'
 import { IpcRendererEvent } from 'electron'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 export default function TerminalComponent({
   isStarted,
@@ -16,6 +17,7 @@ export default function TerminalComponent({
   const termRows: number = 50
   const isProcessRunning = useRef(false)
   const isSubscribed = useRef(false)
+  const [isReceivingOutput, setReceivingOutput] = useState<boolean>(false)
 
   useEffect(() => {
     if (!terminalRef.current) {
@@ -74,13 +76,14 @@ export default function TerminalComponent({
 
       window.electron.ipcRenderer.removeAllListeners('terminal-data')
       isSubscribed.current = false
+      setReceivingOutput(false)
     }
 
     return () => {
       console.log('♻ Cleaning up terminal...')
       window.electron.ipcRenderer.removeAllListeners('terminal-data')
       isSubscribed.current = false
-
+      setReceivingOutput(false)
       if (terminal.current) {
         terminal.current.dispose()
         terminal.current = null
@@ -88,11 +91,13 @@ export default function TerminalComponent({
     }
   }, [isStarted])
   function handleData(_: IpcRendererEvent, data: any) {
+    !isReceivingOutput && setReceivingOutput(true)
     terminal.current?.write(data)
   }
 
   return (
     <div className="terminal-container">
+      {isStarted && !isReceivingOutput && <LoadingSpinner />}
       <div
         ref={terminalRef}
         style={{

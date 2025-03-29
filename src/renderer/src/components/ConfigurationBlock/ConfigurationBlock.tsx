@@ -33,8 +33,12 @@ export default function ConfigurationBlock({
           onChange={(e) => setMaxThreads(parseInt(e.target.value))}
         />
       </div>
-      <button className="start-generator active" onClick={buttonInterraction}>
-        Start Hunting
+      <button
+        tabIndex={-1}
+        className={`start-generator ${!isStarted ? 'active' : 'unactive'}`}
+        onClick={buttonInterraction}
+      >
+        {!isStarted ? 'Start Hunting' : 'Stop Hunting'}
       </button>
     </div>
   )

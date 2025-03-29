@@ -56,19 +56,19 @@ export default function StatsBlock({ isStarted }: { isStarted: boolean }) {
       <p className="stat-title">Stats</p>
       <div className="stat-item">
         <p className="stat-name">Address average</p>
-        <p className="stat-quantity">{statsData.avgAddresses} addr/sec</p>
+        <p className="stat-quantity">{parseFloat(statsData.avgAddresses) * 2} addr/sec</p>
       </div>
       <div className="stat-item">
         <p className="stat-name">Requests average</p>
-        <p className="stat-quantity">{statsData.avgRequests} req/sec</p>
+        <p className="stat-quantity">{parseFloat(statsData.avgRequests) * 2} req/sec</p>
       </div>
       <div className="stat-item">
         <p className="stat-name">Total addresses</p>
-        <p className="stat-quantity">{statsData.addrGenerated} addr</p>
+        <p className="stat-quantity">{parseInt(statsData.addrGenerated) * 2} addr</p>
       </div>
       <div className="stat-item">
         <p className="stat-name">Total requests</p>
-        <p className="stat-quantity">{statsData.reqProcessed} req</p>
+        <p className="stat-quantity">{parseInt(statsData.reqProcessed) * 2} req</p>
       </div>
       <div className="stat-item">
         <p className="stat-name">Uptime</p>
