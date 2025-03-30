@@ -4,4 +4,4 @@ out
 .DS_Store
 .eslintcache
 *.log*
-resources/wallet-hunter.exe
+resources/hunter-protocol.exe
