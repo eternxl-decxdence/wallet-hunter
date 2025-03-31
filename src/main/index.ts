@@ -13,14 +13,9 @@ function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 1280,
-    height: 720,
+    height: 800,
     resizable: false,
     titleBarStyle: 'hidden',
-    titleBarOverlay: {
-      color: '#252627',
-      symbolColor: '#fff',
-      height: 32
-    },
     maximizable: false,
     fullscreenable: false,
     fullscreen: false,
@@ -48,7 +43,12 @@ function createWindow(): void {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
-
+  ipcMain.on('close-window', () => {
+    mainWindow.close()
+  })
+  ipcMain.on('minimize-window', () => {
+    mainWindow.minimize()
+  })
   ipcMain.on('start-csharp-process', (e, cols, rows, threads) => {
     console.log('Spawning terminal at', e)
     terminal = spawn(

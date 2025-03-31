@@ -12,9 +12,22 @@ export default function TerminalComponent({
   isStarted: boolean
 }) {
   const terminalRef = useRef<HTMLDivElement | null>(null)
-  const terminal = useRef<Terminal | null>(null)
   const termCols: number = 155
   const termRows: number = 50
+  const terminal = useRef<Terminal | null>(
+    new Terminal({
+      cols: termCols,
+      rows: termRows,
+      theme: { background: '#202020' },
+      smoothScrollDuration: 200,
+      fontFamily: "'JetBrains Mono', monospaced",
+      fontSize: 12,
+      letterSpacing: 0,
+      disableStdin: true,
+      cursorInactiveStyle: 'none',
+      lineHeight: 1
+    })
+  )
   const isProcessRunning = useRef(false)
   const isSubscribed = useRef(false)
   const [isReceivingOutput, setReceivingOutput] = useState<boolean>(false)
@@ -37,10 +50,10 @@ export default function TerminalComponent({
           smoothScrollDuration: 200,
           fontFamily: "'JetBrains Mono', monospaced",
           fontSize: 12,
-          letterSpacing: 1,
+          letterSpacing: 0,
+          lineHeight: 1,
           disableStdin: true,
-          cursorInactiveStyle: 'none',
-          lineHeight: 1
+          cursorInactiveStyle: 'none'
         })
       }
 
@@ -91,13 +104,17 @@ export default function TerminalComponent({
     }
   }, [isStarted])
   function handleData(_: IpcRendererEvent, data: any) {
-    !isReceivingOutput && setReceivingOutput(true)
+    if (!isReceivingOutput) {
+      setReceivingOutput(true)
+    }
     terminal.current?.write(data)
   }
 
   return (
     <div className="terminal-container">
       {isStarted && !isReceivingOutput && <LoadingSpinner />}
+
+      <div className="font-loader"></div>
       <div
         ref={terminalRef}
         style={{

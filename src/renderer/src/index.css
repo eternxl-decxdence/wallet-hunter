@@ -6,20 +6,18 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
+  user-select: none;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --background-color: #252627;
-  --border-color: #a6b8ff;
-  --border-color-2: #8693c3;
-  --stroke-color: #7e7e7e;
-  --text-color: #dbdbdb;
-  --text-color-ok: #9cdf96;
-  --text-color-error: #e96363;
-  --highlight-color: #6584ff;
+  --background-color: rgb(13, 27, 30);
+  --tiles-background-color: rgb(19, 18, 29);
+  --main-color: rgb(0, 190, 197);
+  --main-color-lighter: rgb(0, 214, 222);
+  --additional-color: rgb(255, 119, 0);
+  --warning-color: rgb(137, 6, 32);
 }
 
 a {

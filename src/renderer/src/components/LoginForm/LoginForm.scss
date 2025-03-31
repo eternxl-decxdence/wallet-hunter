@@ -1,0 +1,114 @@
+@use '../../utils/styleUtils' as utils;
+
+@include utils.font-face('Montserrat Underline', '../../assets/fonts/MontserratUnderline');
+@include utils.font-face('Montserrat', '../../assets/fonts/Montserrat');
+.login-form {
+  z-index: 3;
+  width: 300px;
+  height: 400px;
+
+  display: flex;
+
+  gap: 28px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  background: rgba(from var(--tiles-background-color) r g b / 0.5);
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(from var(--main-color) r g b / 0.2);
+
+  box-sizing: border-box;
+
+  padding: 24px 28px;
+
+  .logo {
+    width: 100%;
+    height: 120px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    .ethereum-logo {
+      width: 120px;
+      height: 120px;
+
+      position: absolute;
+    }
+    .title {
+      z-index: 4;
+      font-family: 'Montserrat Underline', sans-serif;
+      font-size: 28px;
+      font-weight: 770;
+      line-height: 14px;
+
+      color: rgba(from var(--main-color-lighter) r g b / 0.8);
+    }
+  }
+
+  .form-wrapper {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    justify-content: flex-start;
+    gap: 16px;
+
+    margin: 0;
+    padding: 0;
+
+    .form-input {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 12px;
+
+      border: 1px solid rgba(from var(--main-color) r g b / 0.1);
+      border-radius: 16px;
+
+      background: rgba(from var(--tiles-background-color) r g b / 0.5);
+
+      font-family: 'Montserrat', sans-serif;
+      line-height: 14px;
+      font-size: 12px;
+      font-weight: 400;
+
+      transition: all 100ms ease-in-out;
+      &:focus,
+      &:focus-visible {
+        outline: none;
+        border: 1px solid rgba(from var(--main-color) r g b / 0.6);
+      }
+      &::placeholder {
+        color: rgba(255, 255, 255 / 0.8);
+      }
+    }
+    .form-button {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 12px;
+
+      border: 1px solid rgba(from var(--main-color) r g b / 1);
+      border-radius: 16px;
+
+      background: rgba(from var(--main-color) r g b / 0.5);
+
+      font-family: 'Montserrat', sans-serif;
+      line-height: 14px;
+      font-size: 12px;
+      font-weight: 500;
+
+      transition: all 100ms ease-in-out;
+      &:hover {
+        background: rgba(from var(--main-color) r g b / 1);
+      }
+    }
+  }
+}

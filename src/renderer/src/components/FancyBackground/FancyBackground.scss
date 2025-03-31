@@ -1,0 +1,40 @@
+.background {
+  position: absolute;
+  background-color: #0d1b1e;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+
+  .ray {
+    position: absolute;
+    fill: #00afb5;
+    opacity: 0.4;
+    filter: blur(150px);
+    animation: background-pulse 4s alternate infinite ease-in-out;
+  }
+  .first-poly {
+    left: 845px;
+    top: 0;
+  }
+  .second-poly {
+    bottom: 50px;
+    left: 250px;
+  }
+  .third-poly {
+    bottom: 253px;
+    left: 439px;
+  }
+  .fourth-poly {
+    top: -48px;
+    left: 0;
+  }
+}
+
+@keyframes background-pulse {
+  from {
+    filter: blur(100px);
+  }
+  to {
+    filter: blur(50px);
+  }
+}

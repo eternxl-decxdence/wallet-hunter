@@ -2,7 +2,7 @@
 
 @use '../../utils/styleUtils' as utils;
 
-@include utils.font-face('JetBrains Mono', '../../assets/fonts/JetBrainsMono');
+@include utils.font-face-webfont('JetBrains Mono', '../../assets/fonts/JetBrainsMono-Regular');
 
 .terminal-container {
   display: flex;
@@ -17,6 +17,17 @@
   box-sizing: border-box;
   border: 1px solid #828282;
   border-radius: 4px;
+
+  .font-loader {
+    position: absolute;
+    opacity: 0;
+
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .xterm-rows,
+  .xterm-width-cache-measure-container {
+    font-variant-ligatures: none;
+  }
 }
 
 ::-webkit-scrollbar {
