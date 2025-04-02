@@ -12,13 +12,13 @@ export default function TerminalComponent({
   isStarted: boolean
 }) {
   const terminalRef = useRef<HTMLDivElement | null>(null)
-  const termCols: number = 155
-  const termRows: number = 50
+  const termCols: number = 150
+  const termRows: number = 47
   const terminal = useRef<Terminal | null>(
     new Terminal({
       cols: termCols,
       rows: termRows,
-      theme: { background: '#202020' },
+      theme: { background: 'rgba(from var(--tiles-background-color) r g b / 0.5)' },
       smoothScrollDuration: 200,
       fontFamily: "'JetBrains Mono', monospaced",
       fontSize: 12,
@@ -114,13 +114,13 @@ export default function TerminalComponent({
     <div className="terminal-container">
       {isStarted && !isReceivingOutput && <LoadingSpinner />}
 
-      <div className="font-loader"></div>
+      <div className="font-loader">test</div>
       <div
         ref={terminalRef}
         style={{
-          width: '1022px',
-          height: '656px',
-          backgroundColor: '#212121'
+          width: '948px',
+          height: '624px',
+          backgroundColor: 'rgba(from var(--tiles-background-color) r g b / 0.5)'
         }}
       />
     </div>

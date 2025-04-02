@@ -4,7 +4,7 @@
   margin: -50px 0;
   height: 100px;
   z-index: 1000;
-  fill: var(--stroke-color);
+  fill: rgba(from var(--main-color) r g b / 0.3);
   animation: 1s infinite reverse loadingAnimation linear;
 }
 @keyframes loadingAnimation {

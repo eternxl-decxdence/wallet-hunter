@@ -37,6 +37,7 @@
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
+    "axios": "^1.8.4",
     "electron": "^35.0.3",
     "electron-builder": "^25.1.8",
     "electron-vite": "^3.1.0",
@@ -47,6 +48,7 @@
     "prettier": "^3.5.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^7.4.1",
     "sass-embedded": "^1.86.0",
     "typescript": "^5.8.2",
     "vite": "^6.2.3"

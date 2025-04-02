@@ -19,7 +19,9 @@
   --additional-color: rgb(255, 119, 0);
   --warning-color: rgb(137, 6, 32);
 }
-
+* {
+  box-sizing: border-box;
+}
 a {
   font-weight: 500;
   color: #646cff;

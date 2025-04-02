@@ -53,30 +53,32 @@ export default function StatsBlock({ isStarted }: { isStarted: boolean }) {
 
   return (
     <div className="stat-block">
-      <p className="stat-title">Stats</p>
-      <div className="stat-item">
-        <p className="stat-name">Address average</p>
-        <p className="stat-quantity">{parseFloat(statsData.avgAddresses) * 2.0} addr/sec</p>
+      <div className="stat-label">
+        <p className="stat-title">Stats</p>
       </div>
       <div className="stat-item">
-        <p className="stat-name">Requests average</p>
-        <p className="stat-quantity">{parseFloat(statsData.avgRequests)} req/sec</p>
+        <p className="stat-text">AVG Addresses</p>
+        <p className="stat-text">{parseFloat(statsData.avgAddresses) * 2.0} psec</p>
       </div>
       <div className="stat-item">
-        <p className="stat-name">Total addresses</p>
-        <p className="stat-quantity">{parseInt(statsData.addrGenerated) * 2} addr</p>
+        <p className="stat-text">AVG Requests</p>
+        <p className="stat-text">{parseFloat(statsData.avgRequests) * 2.0} psec</p>
       </div>
       <div className="stat-item">
-        <p className="stat-name">Total requests</p>
-        <p className="stat-quantity">{parseInt(statsData.reqProcessed) * 2} req</p>
+        <p className="stat-text">Total addresses</p>
+        <p className="stat-text">{parseInt(statsData.addrGenerated) * 2}</p>
       </div>
       <div className="stat-item">
-        <p className="stat-name">Uptime</p>
-        <p className="stat-quantity">{formatUptime(uptime)}</p>
+        <p className="stat-text">Total requests</p>
+        <p className="stat-text">{parseInt(statsData.reqProcessed) * 2}</p>
       </div>
       <div className="stat-item">
-        <p className="stat-name">Subscription status</p>
-        <p className="stat-quantity">0</p>
+        <p className="stat-text">Uptime</p>
+        <p className="stat-text">{formatUptime(uptime)}</p>
+      </div>
+      <div className="stat-item">
+        <p className="stat-text">Subscription</p>
+        <p className="stat-text">0</p>
       </div>
     </div>
   )

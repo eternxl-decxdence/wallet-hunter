@@ -5,19 +5,23 @@
 @include utils.font-face-webfont('JetBrains Mono', '../../assets/fonts/JetBrainsMono-Regular');
 
 .terminal-container {
+  width: 948px;
+  height: 624px;
+
   display: flex;
-  width: 1022px;
   justify-content: space-around;
   align-items: center;
+
   padding: 0;
-  margin: 16px 8px 16px 0;
-  flex: 1;
-  height: 656px;
+  margin: 0;
+
   overflow: hidden;
   box-sizing: border-box;
-  border: 1px solid #828282;
+  border: 1px solid rgba(from var(--main-color) r g b / 0.3);
   border-radius: 4px;
 
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   .font-loader {
     position: absolute;
     opacity: 0;

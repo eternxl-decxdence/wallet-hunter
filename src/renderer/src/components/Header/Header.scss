@@ -31,9 +31,10 @@
     app-region: no-drag;
     margin: 0;
 
-    padding: 0 6px 0 0;
+    padding: 0;
 
     box-sizing: border-box;
+
     .window-control {
       width: 40px;
       height: 20px;
@@ -47,6 +48,8 @@
       justify-content: center;
       align-items: center;
       background: rgba(from var(--tiles-background-color) r g b / 0);
+
+      transition: 100ms all ease-in-out;
 
       .close-btn {
         width: 16px;
