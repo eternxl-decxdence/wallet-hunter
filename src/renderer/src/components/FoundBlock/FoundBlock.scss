@@ -21,6 +21,12 @@
 
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
+
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   &-label {
     display: flex;

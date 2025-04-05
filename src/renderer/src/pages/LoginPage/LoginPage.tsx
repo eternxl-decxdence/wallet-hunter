@@ -1,9 +1,16 @@
 import './LoginPage.scss'
 import LoginForm from '@renderer/components/LoginForm/LoginForm'
-export default function LoginPage() {
+import { Dispatch, SetStateAction } from 'react'
+export default function LoginPage({
+  user,
+  setUser
+}: {
+  user: string
+  setUser: Dispatch<SetStateAction<string>>
+}) {
   return (
     <div className="login-page">
-      <LoginForm />
+      <LoginForm user={user} setUser={setUser} />
     </div>
   )
 }

@@ -14,7 +14,7 @@ export default function Header() {
     <div className="header">
       <div className="title-bar">
         <p className="name">Wallet Hunter</p>
-        <div className="control-buttons">
+        <div className="window-control-buttons">
           <button className="window-control" onClick={minimizeWindow}>
             <MinimizeSVG className="minimize-btn" />
           </button>

@@ -1,0 +1,48 @@
+@use '../../utils/styleUtils' as utils;
+
+@include utils.font-face('Montserrat Underline', '../../assets/fonts/MontserratUnderline');
+
+.control-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 32px;
+
+  .switch-page {
+    width: 130px;
+    height: 32px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: 4px 16px;
+
+    background: linear-gradient(135deg, #00bec566 0%, #005c5f66 100%);
+
+    border-radius: 16px;
+
+    border: 1px solid rgba(from var(--main-color) r g b / 0.5);
+
+    font-family: 'Montserrat Underline', sans-serif;
+    text-align: center;
+    font-size: 20px;
+
+    transition: 200ms ease-in-out all;
+    color: rgba(from white r g b / 0.6);
+    font-weight: 500;
+
+    &.active {
+      color: white;
+      font-weight: 600;
+    }
+
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      border: 1px solid rgba(from var(--main-color) r g b / 0.9);
+    }
+  }
+}

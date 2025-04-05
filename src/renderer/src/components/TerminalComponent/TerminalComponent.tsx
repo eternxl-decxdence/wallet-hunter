@@ -6,8 +6,10 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 export default function TerminalComponent({
   isStarted,
-  threads
+  threads,
+  batchSize
 }: {
+  batchSize: number
   threads: number
   isStarted: boolean
 }) {
@@ -18,7 +20,9 @@ export default function TerminalComponent({
     new Terminal({
       cols: termCols,
       rows: termRows,
-      theme: { background: 'rgba(from var(--tiles-background-color) r g b / 0.5)' },
+      theme: {
+        background: '#13121D'
+      },
       smoothScrollDuration: 200,
       fontFamily: "'JetBrains Mono', monospaced",
       fontSize: 12,
@@ -46,7 +50,7 @@ export default function TerminalComponent({
         terminal.current = new Terminal({
           cols: termCols,
           rows: termRows,
-          theme: { background: '#202020' },
+          theme: { background: '#13121d' },
           smoothScrollDuration: 200,
           fontFamily: "'JetBrains Mono', monospaced",
           fontSize: 12,
@@ -73,7 +77,13 @@ export default function TerminalComponent({
 
       if (!isProcessRunning.current) {
         console.log('🚀 Sending start-csharp-process...')
-        window.electron.ipcRenderer.send('start-csharp-process', termCols, termRows, threads)
+        window.electron.ipcRenderer.send(
+          'start-csharp-process',
+          termCols,
+          termRows,
+          threads,
+          batchSize
+        )
         isProcessRunning.current = true
       }
     } else {
@@ -120,7 +130,8 @@ export default function TerminalComponent({
         style={{
           width: '948px',
           height: '624px',
-          backgroundColor: 'rgba(from var(--tiles-background-color) r g b / 0.5)'
+          backgroundColor: 'rgba(from var(--tiles-background-color) r g b / 0.5)',
+          opacity: 0.8
         }}
       />
     </div>

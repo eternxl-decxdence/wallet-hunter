@@ -1,10 +1,16 @@
 import api from '../../api/api'
-import { FormEvent, useState } from 'react'
+import { FormEvent, SetStateAction, useState, Dispatch } from 'react'
 
 import './LoginForm.scss'
 import EthLogoSVG from '../../assets/ethereumlogo.png'
 
-export default function LoginForm() {
+export default function LoginForm({
+  user,
+  setUser
+}: {
+  user: string
+  setUser: Dispatch<SetStateAction<string>>
+}) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -13,6 +19,7 @@ export default function LoginForm() {
     e.preventDefault()
     try {
       const response = await api.post('/auth/login', { username, password })
+      setUser
       localStorage.setItem('token', response.data.token)
       window.location.href = '/main'
     } catch (err: any) {

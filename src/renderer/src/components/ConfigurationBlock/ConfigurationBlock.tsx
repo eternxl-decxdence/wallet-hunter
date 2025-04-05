@@ -7,7 +7,7 @@ export default function ConfigurationBlock({
   isStarted
 }: {
   onStop: () => void
-  onStart: (arg: number) => void
+  onStart: (arg: number, arg2: number) => void
   isStarted: boolean
 }) {
   const [maxThreads, setMaxThreads] = useState<number>(64)
@@ -15,7 +15,7 @@ export default function ConfigurationBlock({
   function buttonInterraction() {
     if (!isStarted) {
       Number.isNaN(maxThreads) && setMaxThreads(1)
-      onStart(maxThreads)
+      onStart(maxThreads, rpcBatchSize)
     } else {
       onStop()
     }
@@ -34,6 +34,7 @@ export default function ConfigurationBlock({
             className="config-value"
             value={maxThreads}
             placeholder="64"
+            disabled={isStarted}
             onChange={(e) => setMaxThreads(parseInt(e.target.value))}
           />
         </div>
@@ -43,6 +44,7 @@ export default function ConfigurationBlock({
             name="maxThreads"
             type="number"
             className="config-value"
+            disabled={isStarted}
             value={rpcBatchSize}
             placeholder="1000"
             onChange={(e) => setRpcBatchSize(parseInt(e.target.value))}

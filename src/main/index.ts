@@ -5,8 +5,17 @@ import icon from '../../resources/icon.png?asset'
 import { spawn, IPty } from 'node-pty'
 import { createConnection } from 'net'
 
-const PIPE_NAME = '\\\\.\\pipe\\AuxDataPipe'
-let pipeClient
+const PIPE_AUX: { pipeName: string; ipcHook: string } = {
+  pipeName: '\\\\.\\pipe\\AuxDataPipe',
+  ipcHook: 'stats-data'
+}
+const PIPE_RES: { pipeName: string; ipcHook: string } = {
+  pipeName: '\\\\.\\pipe\\ResultsDataPipe',
+  ipcHook: 'results-data'
+}
+
+let AuxDataPipe
+let ResultsDataPipe
 let terminal: IPty | null
 
 function createWindow(): void {
@@ -49,25 +58,20 @@ function createWindow(): void {
   ipcMain.on('minimize-window', () => {
     mainWindow.minimize()
   })
-  ipcMain.on('start-csharp-process', (e, cols, rows, threads) => {
+  ipcMain.on('start-csharp-process', (e, cols, rows, threads, batchSize) => {
     console.log('Spawning terminal at', e)
     terminal = spawn(
       `${__dirname}\\../../resources/hunter-protocol.exe`,
-      [
-        '--adminUrl=http://localhost:5000',
-        '--resultsFile=results.json',
-        '--rpcUrl=https://ethereum-rpc.publicnode.com',
-        `--maxThreads=${threads}`,
-        '--localPort=5001'
-      ],
+      [`-t ${threads}`, `-b ${batchSize}`],
       {
-        name: 'xterm-256-color',
+        name: 'xterm-truecolor',
         cols,
         rows,
         cwd: __dirname
       }
     )
-    connectToPipe()
+    connectToPipe(20, PIPE_AUX, AuxDataPipe)
+    connectToPipe(20, PIPE_RES, ResultsDataPipe)
     terminal.onData((data: string) => {
       mainWindow.webContents.send('terminal-data', data)
     })
@@ -81,13 +85,17 @@ function createWindow(): void {
     terminal = null
   })
 
-  function connectToPipe(retries = 20) {
-    pipeClient = createConnection(PIPE_NAME, () => {})
+  function connectToPipe(
+    retries,
+    { pipeName, ipcHook }: { pipeName: string; ipcHook: string },
+    pipeObj
+  ) {
+    pipeObj = createConnection(pipeName, () => {})
 
-    pipeClient.on('readable', () => {
+    pipeObj.on('readable', () => {
       setImmediate(() => {
         let chunk
-        while (null !== (chunk = pipeClient.read())) {
+        while (null !== (chunk = pipeObj.read())) {
           const data = chunk.toString().trim()
           console.log(`[PIPE] Received chunk:`, data)
 
@@ -107,15 +115,15 @@ function createWindow(): void {
       })
     })
 
-    pipeClient.on('error', (err: any) => {
+    pipeObj.on('error', (err: any) => {
       if (retries > 0) {
         console.log('Conection error, retrying... ', err)
-        setTimeout(() => connectToPipe(retries - 1), 1000)
+        setTimeout(() => connectToPipe(retries - 1, { pipeName, ipcHook }, pipeObj), 1000)
       } else {
       }
     })
 
-    pipeClient.on('end', () => {
+    pipeObj.on('end', () => {
       console.log('Pipe connection closed')
     })
   }
