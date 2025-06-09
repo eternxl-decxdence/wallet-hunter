@@ -1,38 +1,10 @@
 # Wallet Hunter
+Full-stack crypto utility app 
 
 Electrton + TS + React
 
 Powered by electron-vite
 
-Backend - [eth-crypto-checker](https://github.com/eternxl-decxdence/eth-balance-checker)
-
-## Recommended IDE Setup
-
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-## Project Setup
-
-### Install
-
-```bash
-$ npm install
-```
-
-### Development
-
-```bash
-$ npm run dev
-```
-
-### Build
-
-```bash
-# For windows
-$ npm run build:win
-
-# For macOS
-$ npm run build:mac
-
-# For Linux
-$ npm run build:linux
-```
+Backend - restricted due to NDA
+API - [wallet-hunter-api](https://github.com/eternxl-decxdence/wallet-hunter-api)
+Admin Panel - [wallet-hunter-admin](https://github.com/eternxl-decxdence/wallet-hunter-admin)
